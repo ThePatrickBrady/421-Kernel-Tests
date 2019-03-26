@@ -3,6 +3,7 @@
 #include <comp421/yalnix.h>
 #include <comp421/hardware.h>
 
+/* Created by Patrick Brady and Simran Virk */
 
 int recFact(int n);
 
