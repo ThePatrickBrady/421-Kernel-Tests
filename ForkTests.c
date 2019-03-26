@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <comp421/yalnix.h>
 
+/* Created by Patrick Brady and Simran Virk */
+
 int main(int argc, char **argv) {
     printf("Init the fork tests\n");
     if (*argv[0] == '1') {
