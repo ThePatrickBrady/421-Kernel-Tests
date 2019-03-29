@@ -7,8 +7,8 @@
 
 int main(int argc, char **argv)
 {
-    printf("Delay Test %s about to run...\n", argv[0]);
-    if (*(argv[0]) == '1') {
+    printf("Delay Test %s about to run...\n", argv[1]);
+    if (*(argv[1]) == '1') {
         printf("Wait Test 1. There are 4 parts...\n");
         int x = Fork();
 
@@ -136,7 +136,7 @@ int main(int argc, char **argv)
         
         
         
-    } else if (*(argv[0]) == '2') {
+    } else if (*(argv[1]) == '2') {
         printf("Wait Test 2. 8 prints.\n");
         int x = Fork();
 
@@ -278,7 +278,7 @@ int main(int argc, char **argv)
             printf("Test 8 FAILED.\n");
             return -1;
         }
-    } else if (*(argv[0]) == '3') {
+    } else if (*(argv[1]) == '3') {
         printf("Wait Test 3. \n");
         int x = Fork();
         
@@ -305,7 +305,7 @@ int main(int argc, char **argv)
             }
             return 22;
         }
-    } else if (*(argv[0]) == '4') {
+    } else if (*(argv[1]) == '4') {
         printf("Tests that processes switch away after 2 clock ticks\n");
         Fork();
         // int pid = GetPid();
@@ -316,7 +316,7 @@ int main(int argc, char **argv)
         while (1) {
             // printf("This is process %u\n", pid);
         }
-    } else if (*(argv[0]) == '5') {
+    } else if (*(argv[1]) == '5') {
         printf("This test should print that it is the same process and NEVER switch to idle\n");
         int pid = GetPid();
         
