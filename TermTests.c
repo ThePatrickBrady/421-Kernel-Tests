@@ -7,7 +7,7 @@
 int main(int argc, char **argv) {
     printf("Init the term tests\n");
 
-    if (*argv[0] == '1') {
+    if (*argv[1] == '1') {
         char string[] = "abcdefghijklmnopqrstuvwxyz\n";
         int length = sizeof(string) - 1;
 
@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
         }
 
         return 0;
-    } else if (*argv[0] == '2') {
+    } else if (*argv[1] == '2') {
         int length = 10; // >:)
         char str[length];
 
@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
         printf("\n Process %u successfully read %u chars from terminal\n", pid, num_chars);
 
         return 0;
-    } else if (*argv[0] == '3') {
+    } else if (*argv[1] == '3') {
         char string[] = "Please wait 1-2 seconds then type 123\\n into this terminal now..\n";
         int length = sizeof(string) - 1;
         char string2[] = "Please wait 1-2 seconds then type 123\\n into this terminal AGAIN\n";
@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
         int x = Fork();
         if (x == 0) {
             num_chars = TtyRead(1, str, str_len);
-            printf("The read call has completed. Attempting to write to terminal 2.");
+            printf("The read call has completed. Attempting to write to terminal 2.\n");
             num_chars = TtyWrite(2, string, length); // z is waiting on this term
             return 1;
         }
@@ -116,7 +116,7 @@ int main(int argc, char **argv) {
 
         printf("Tests complete.\n");
         return 5;
-    } else if (*argv[0] == '4') {
+    } else if (*argv[1] == '4') {
         // TODO write a test that does reads AFTER the data has been put in (use delay)
         char string2[] = "Please wait 1-2 seconds then type 1234567\\nabc\\nabc\\nabc\\n into this terminal\n";
         int length2 = sizeof(string2) - 1;
