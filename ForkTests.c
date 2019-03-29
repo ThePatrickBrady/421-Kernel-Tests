@@ -2,11 +2,9 @@
 #include <stdlib.h>
 #include <comp421/yalnix.h>
 
-/* Created by Patrick Brady and Simran Virk */
-
 int main(int argc, char **argv) {
     printf("Init the fork tests\n");
-    if (*argv[0] == '1') {
+    if (*argv[1] == '1') {
         //Test one fork
         int x;
         x = Fork();
@@ -19,7 +17,7 @@ int main(int argc, char **argv) {
         return 0;
     }
 
-    if (*argv[0] == '2') {
+    if (*argv[1] == '2') {
         //Test multiple forks
         int x = Fork();
         int y = Fork();
@@ -44,7 +42,7 @@ int main(int argc, char **argv) {
         return 0;
     }
 
-    if (*argv[0] == '3') {
+    if (*argv[1] == '3') {
         int x = Fork();
         int y = Fork();
         int s1,s2,s3,s4,s5,s6;
