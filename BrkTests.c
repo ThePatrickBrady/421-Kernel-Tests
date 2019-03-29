@@ -2,12 +2,11 @@
 #include <stdlib.h>
 #include <comp421/yalnix.h>
 #include <comp421/hardware.h>
-
-/* Created by Patrick Brady and Simran Virk */
+// #include "../yalnixSource.c"
 
 int main(int argc, char **argv) {
     TracePrintf(0, "Init the break tests\n");
-    if (*(argv[0]) == '1') {
+    if (*(argv[1]) == '1') {
         void *ptr = malloc(5 * PAGESIZE);
         if (ptr == NULL) {
             TracePrintf(0, "ERROR. UNABLE TO ALLOCATE.\n");
@@ -32,7 +31,7 @@ int main(int argc, char **argv) {
 
         TracePrintf(0, "Free complete...\n");
         return 0;
-    } else if (*(argv[0]) == '2') {
+    } else if (*(argv[1]) == '2') {
         TracePrintf(0, "This program will do a series of direct calls to Brk. Please verify the internals match what it says was called.\n");
         // TODO find a way to test the freeing of break... cannot think of anything right now besides giving idle a page table 0 and then calling the function explicitly.
         int s = Brk((void *)0x26000);
@@ -57,7 +56,7 @@ int main(int argc, char **argv) {
         TracePrintf(0, "Done calling. Please check that the calls worked.");
         Halt();
         return 0;
-    } else if (*argv[0] == '3') {
+    } else if (*argv[1] == '3') {
         TracePrintf(0, "Tets that break to address less than mem invalid doesn't work\n");
         int s = Brk((void *)0x14);
         if (s == ERROR) {
@@ -67,7 +66,7 @@ int main(int argc, char **argv) {
         }
 
         return 0;
-    } else if (*argv[0] == '4') {
+    } else if (*argv[1] == '4') {
         TracePrintf(0, "Break up to 0x25000 called, then to a slightly misaligned below. SECOND CALL SHOULD NOT CHANGE BRK.\n");
         TracePrintf(0, "Break up to 0x25000 called.\n");
         int s = Brk((void *)0x25000);
@@ -84,7 +83,7 @@ int main(int argc, char **argv) {
         // Halt();
         return 0;
         
-    } else if (*argv[0] == '5') {
+    } else if (*argv[1] == '5') {
         TracePrintf(0, "Break up to and down to a misaligned address.\n");
         TracePrintf(0, "Break up to 0x25420 called.\n");
         int s = Brk((void *)0x25420);
@@ -105,6 +104,23 @@ int main(int argc, char **argv) {
         Halt();
         return 0;
         
+    } else if (*(argv[1]) == '6') {
+        TracePrintf(0, "Test to check that freeing calls brk and deallocates pages.\n");
+        void *waste = malloc(PAGESIZE * 100);
+        if (waste == NULL) {
+            TracePrintf(0, "Malloc didn't work\n");
+        }
+        void *waste2 = malloc(PAGESIZE * 50);
+        if (waste2 == NULL) {
+            TracePrintf(0, "Malloc didn't work\n");
+        }
+        TracePrintf(0, "About to free\n");
+        free(waste2);
+
+        TracePrintf(0, "About to free 2\n");
+        free(waste);
+        TracePrintf(0, "Test finished.\n");
+        return 0;
     } else {
         return ERROR;
     }
