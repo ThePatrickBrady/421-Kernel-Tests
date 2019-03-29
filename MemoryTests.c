@@ -8,7 +8,7 @@
 int recFact(int n);
 
 int main(int argc, char **argv) {
-    if (*(argv[0]) == '1') {
+    if (*(argv[1]) == '1') {
         printf("Starting memory test\n");
         
         int x = recFact(500);
